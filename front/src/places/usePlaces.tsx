@@ -3,8 +3,10 @@ import Place from "../types/Place";
 import getAttractivePlacesApi from "./getAttractivePlacesFeature/getAttractivePlacesApi";
 import searchPlacesByNameApi from "./searchPlacesByNameFeature/searchPlacesByNameApi";
 import searchByCategoryApi from "./searchByCategory/searchByCategoryApi";
+import searchPlacesByDistanceApi from "./searchPlacesByDistanceFeature/searchPlacesByDistanceApi";
 
 function useGetAttractivePlaces() {
+  const [distance, setDistance] = React.useState<number>(0);
   const [places, setPlaces] = React.useState<Place[]>([]);
 
   const getAttractivePlaces = async () => {
@@ -34,7 +36,21 @@ function useGetAttractivePlaces() {
     setPlaces(foundPlaces);
   };
 
-  return { places, getAttractivePlaces, searchPlacesByName , searchPlacesByCategory };
+  // serach places by distance
+  const searchPlacesByDistance = async (distance: number) => {
+    setDistance(distance);
+    const foundPlaces: Place[] = await searchPlacesByDistanceApi(distance);
+    setPlaces(foundPlaces);
+  };
+
+  return {
+    places,
+    distance,
+    getAttractivePlaces,
+    searchPlacesByName,
+    searchPlacesByDistance,
+    searchPlacesByCategory,
+  };
 }
 
 export default useGetAttractivePlaces;

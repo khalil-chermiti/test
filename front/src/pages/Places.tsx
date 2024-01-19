@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useGetAttractivePlaces from "../places/usePlaces";
 import PlaceComponent from "../places/PlaceComponent";
 
@@ -6,9 +6,12 @@ function Places() {
   // places state from hook
   const {
     places,
+    distance,
+    setDistance,
     getAttractivePlaces,
     searchPlacesByName,
     searchPlacesByCategory,
+    searchPlacesByDistance,
   } = useGetAttractivePlaces();
 
   // load places from backend
@@ -30,12 +33,20 @@ function Places() {
         <option value="cultural">archaeology</option>
         <option value="cultural">fortifications</option>
       </select>
-
+      <br />
       <input
         type="text"
         onChange={e => searchPlacesByName(e.target.value)}
       ></input>
-
+      <br />
+      distance : {distance}
+      <input
+        type="range"
+        min="0"
+        max="500"
+        step="50"
+        onChange={e => searchPlacesByDistance(parseInt(e.target.value))}
+      />
       {places.length === 0
         ? "Loading..."
         : places.map(place => <PlaceComponent place={place} key={place.xid} />)}
