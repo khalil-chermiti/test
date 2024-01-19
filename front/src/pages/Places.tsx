@@ -7,7 +7,6 @@ function Places() {
   const {
     places,
     distance,
-    setDistance,
     getAttractivePlaces,
     searchPlacesByName,
     searchPlacesByCategory,

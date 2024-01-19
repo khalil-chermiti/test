@@ -1,13 +1,15 @@
 import React from "react";
-import Place from "../types/Place";
+import Place, { PlaceInfo } from "../types/Place";
 import getAttractivePlacesApi from "./getAttractivePlacesFeature/getAttractivePlacesApi";
 import searchPlacesByNameApi from "./searchPlacesByNameFeature/searchPlacesByNameApi";
 import searchByCategoryApi from "./searchByCategory/searchByCategoryApi";
 import searchPlacesByDistanceApi from "./searchPlacesByDistanceFeature/searchPlacesByDistanceApi";
+import getPlaceInfoApi from "./getPlaceInfoFeature/getPlaceInfoApi";
 
 function useGetAttractivePlaces() {
   const [distance, setDistance] = React.useState<number>(0);
   const [places, setPlaces] = React.useState<Place[]>([]);
+  const [placeInfo, setPlaceInfo] = React.useState<PlaceInfo>();
 
   const getAttractivePlaces = async () => {
     const data: Place[] = await getAttractivePlacesApi();
@@ -43,13 +45,21 @@ function useGetAttractivePlaces() {
     setPlaces(foundPlaces);
   };
 
+  // get place info
+  const getPlaceInfo = async (placeId: string) => {
+    const data: PlaceInfo = await getPlaceInfoApi(placeId);
+    setPlaceInfo(data);
+  };
+
   return {
     places,
     distance,
+    placeInfo,
     getAttractivePlaces,
     searchPlacesByName,
     searchPlacesByDistance,
     searchPlacesByCategory,
+    getPlaceInfo,
   };
 }
 
