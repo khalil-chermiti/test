@@ -1,5 +1,7 @@
+import Places from "./pages/Places"
+
 function App() {
-  return "hello everyone";
+  return <Places/>
 }
 
 export default App
