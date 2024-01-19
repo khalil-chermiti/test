@@ -3,9 +3,9 @@ const SEARCH_PLACES_BY_DISTANCE =
 
 const express = require("express");
 
-const searchPlacesByDistance = express.Router();
+const searchPlacesByDistanceRouter = express.Router();
 
-searchPlacesByDistance.post("/distance", async (req, res) => {
+searchPlacesByDistanceRouter.post("/distance", async (req, res) => {
   const distance = req.body.distance;
 
   let places = [];
@@ -19,4 +19,4 @@ searchPlacesByDistance.post("/distance", async (req, res) => {
   res.status(200).send(filteredPlaces);
 });
 
-module.exports = searchPlacesByDistance;
+module.exports = searchPlacesByDistanceRouter;

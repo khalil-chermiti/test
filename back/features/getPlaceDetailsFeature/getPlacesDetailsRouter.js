@@ -5,9 +5,9 @@ const api_key =
 
 const express = require("express");
 
-const getPlaceDetails = express.Router();
+const getPlaceDetailsRouter = express.Router();
 
-getPlaceDetails.get("/:placeId", async (req, res) => {
+getPlaceDetailsRouter.get("/:placeId", async (req, res) => {
   const { placeId } = req.params;
 
   // fetch data from api
@@ -17,4 +17,4 @@ getPlaceDetails.get("/:placeId", async (req, res) => {
   res.status(200).send(data);
 });
 
-module.exports = getPlaceDetails;
+module.exports = getPlaceDetailsRouter;

@@ -3,9 +3,9 @@ const SEARCH_PLACES_BY_NAME_URL =
 
 const express = require("express");
 
-const searchPlacesByName = express.Router();
+const searchPlacesByNameRouter = express.Router();
 
-searchPlacesByName.post("/search", async (req, res) => {
+searchPlacesByNameRouter.post("/search", async (req, res) => {
   const name = req.body.name;
 
   // fetch data from api
@@ -18,4 +18,4 @@ searchPlacesByName.post("/search", async (req, res) => {
   res.status(200).send(places);
 });
 
-module.exports = searchPlacesByName;
+module.exports = searchPlacesByNameRouter;

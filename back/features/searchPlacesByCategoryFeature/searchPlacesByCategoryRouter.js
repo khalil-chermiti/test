@@ -3,9 +3,9 @@ const SEARCH_PLACES_BY_CATEGORY =
 
 const express = require("express");
 
-const searchPlacesByGategory = express.Router();
+const searchPlacesByCategoryRouter = express.Router();
 
-searchPlacesByGategory.post("/category", async (req, res) => {
+searchPlacesByCategoryRouter.post("/category", async (req, res) => {
   const category = req.body.category;
 
   // fetch data from api
@@ -18,4 +18,4 @@ searchPlacesByGategory.post("/category", async (req, res) => {
   res.status(200).send(places);
 });
 
-module.exports = searchPlacesByGategory;
+module.exports = searchPlacesByCategoryRouter;
