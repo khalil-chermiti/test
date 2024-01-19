@@ -3,6 +3,7 @@ const attractivePlacesRouter = require("./getAttractivePlacesFeature/getAttracti
 const { credentials, corsOptions } = require("./corsConfig.js");
 const cors = require("cors");
 const searchPlacesByName = require("./searchPlacesByNameFeature/getAttractivePlacesFeature.js");
+const searchPlacesByGategory = require("./searchPlacesByCategoryFeature/searchPlacesByCategoryRouter.js");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors(corsOptions));
 
 app.use("/places", attractivePlacesRouter);
 app.use("/places", searchPlacesByName);
+app.use("/places", searchPlacesByGategory);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

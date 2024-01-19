@@ -4,8 +4,12 @@ import PlaceComponent from "../places/PlaceComponent";
 
 function Places() {
   // places state from hook
-  const { places, getAttractivePlaces, searchPlacesByName } =
-    useGetAttractivePlaces();
+  const {
+    places,
+    getAttractivePlaces,
+    searchPlacesByName,
+    searchPlacesByCategory,
+  } = useGetAttractivePlaces();
 
   // load places from backend
   useEffect(() => {
@@ -16,11 +20,15 @@ function Places() {
   return (
     <div>
       <label htmlFor="catetory">category:</label>
-      <select name="category" id="category">
+      <select
+        name="category"
+        id="category"
+        onChange={e => searchPlacesByCategory(e.target.value)}
+      >
         <option value="historic">historic</option>
         <option value="cultural">cultural</option>
         <option value="cultural">archaeology</option>
-        <option value="cultural">museums</option>
+        <option value="cultural">fortifications</option>
       </select>
 
       <input

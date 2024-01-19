@@ -2,6 +2,7 @@ import React from "react";
 import Place from "../types/Place";
 import getAttractivePlacesApi from "./getAttractivePlacesFeature/getAttractivePlacesApi";
 import searchPlacesByNameApi from "./searchPlacesByNameFeature/searchPlacesByNameApi";
+import searchByCategoryApi from "./searchByCategory/searchByCategoryApi";
 
 function useGetAttractivePlaces() {
   const [places, setPlaces] = React.useState<Place[]>([]);
@@ -24,11 +25,16 @@ function useGetAttractivePlaces() {
   const searchPlacesByName = async (search: string) => {
     if (search.length < 3) return;
     const foundPlaces: Place[] = await searchPlacesByNameApi(search);
-    console.log(foundPlaces);
     setPlaces(foundPlaces);
   };
 
-  return { places, getAttractivePlaces, searchPlacesByName };
+  // serach by category
+  const searchPlacesByCategory = async (category: string) => {
+    const foundPlaces: Place[] = await searchByCategoryApi(category);
+    setPlaces(foundPlaces);
+  };
+
+  return { places, getAttractivePlaces, searchPlacesByName , searchPlacesByCategory };
 }
 
 export default useGetAttractivePlaces;
